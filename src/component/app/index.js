@@ -17,6 +17,8 @@ class App extends React.Component {
     this.handleSort = this.handleSort.bind(this);
     this.sortAscendingPrice = this.sortAscendingPrice.bind(this);
     this.sortDescendingPrice = this.sortDescendingPrice.bind(this);
+    this.sortAscendingTime = this.sortAscendingTime.bind(this);
+    this.sortDescendingTime = this.sortDescendingTime.bind(this);
   }
 
   // loads list of airports to populate search bar
@@ -55,20 +57,27 @@ class App extends React.Component {
     console.log('handleSort order: ', order);
 
     switch(type) {
+    case 'Departs':
+      order ? this.sortAscendingTime(type) : this.sortDescendingTime(type);
+      break;
+    case 'Arrives':
+      order ? this.sortAscendingTime(type) : this.sortDescendingTime(type);
+      break;
     case 'MainCabinPrice':
-      order ? this.sortAscendingPrice() : this.sortDescendingPrice();
+      order ? this.sortAscendingPrice(type) : this.sortDescendingPrice(type);
       break;
     case 'FirstClassPrice':
-      order ? this.sortAscendingPrice() : this.sortDescendingPrice();
+      order ? this.sortAscendingPrice(type) : this.sortDescendingPrice(type);
       break;
+
     default: break;
     }
   }
 
-  sortAscendingPrice(){
+  sortAscendingPrice(type){
     let flightsArr = this.state.flights;
-    let type = this.state.type;
     console.log('ASCENDING', type);
+
     let sortedByPriceAscending = flightsArr.sort((a,b) => {
       return parseInt(a[type]) - parseInt(b[type]);
     });
@@ -78,9 +87,8 @@ class App extends React.Component {
 
   }
 
-  sortDescendingPrice(){
+  sortDescendingPrice(type){
     let flightsArr = this.state.flights;
-    let type = this.state.type;
     let sortedByPriceDescending = flightsArr.sort((a,b) => {
       return parseInt(b[type]) - parseInt(a[type]);
     });
@@ -89,6 +97,33 @@ class App extends React.Component {
     });
   }
 
+  sortAscendingTime(type){
+    let flightsArr = this.state.flights;
+
+    let AM = flightsArr.filter((obj, index) => {
+      return flightsArr[index][type].includes('AM');
+    }).sort((a,b) => {
+      return parseInt(b[type]) - parseInt(a[type]);
+    });
+
+    let PM = flightsArr.filter((obj, index) => {
+      return flightsArr[index][type].includes('PM');
+    }).sort((a,b) => {
+      return parseInt(b[type]) - parseInt(a[type]);
+    });
+
+    console.log('array', sortedByTimeAscending);
+
+    let sortedByTimeAscending = AM.concat(PM);
+
+    this.setState({
+      flights: sortedByTimeAscending,
+    });
+  }
+
+  sortDescendingTime(type) {
+    console.log('sortDescendingTime', type);
+  }
 
   componentDidUpdate() {
     console.log(':::::STATE::::', this.state);
