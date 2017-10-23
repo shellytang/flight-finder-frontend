@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import SearchBar from '../search-bar';
 import FlightList from '../flight-list';
+import FlightHeader from '../flight-header';
 
 class App extends React.Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class App extends React.Component {
         //     searchError: null,
         //   });
         // }
-        
+
         this.setState({
           flights: res.data,
           searchError: null,
