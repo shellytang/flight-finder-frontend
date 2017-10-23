@@ -100,29 +100,25 @@ class App extends React.Component {
   sortAscendingTime(type){
     let flightsArr = this.state.flights;
 
-    let AM = flightsArr.filter((obj, index) => {
-      return flightsArr[index][type].includes('AM');
-    }).sort((a,b) => {
-      return parseInt(b[type]) - parseInt(a[type]);
+    let sortedByTimeAscending = flightsArr.sort((a,b) => {
+      return new Date('2017/01/01 ' + a[type]) - new Date('2017/01/01 ' + b[type]);
     });
-
-    let PM = flightsArr.filter((obj, index) => {
-      return flightsArr[index][type].includes('PM');
-    }).sort((a,b) => {
-      return parseInt(b[type]) - parseInt(a[type]);
-    });
-
-    console.log('array', sortedByTimeAscending);
-
-    let sortedByTimeAscending = AM.concat(PM);
+    console.log('sorted ascending time', sortedByTimeAscending);
 
     this.setState({
       flights: sortedByTimeAscending,
     });
   }
 
-  sortDescendingTime(type) {
-    console.log('sortDescendingTime', type);
+  sortDescendingTime(type){
+    let flightsArr = this.state.flights;
+
+    let sortedByTimeDescending = flightsArr.sort((a,b) => {
+      return new Date('2017/01/01 ' + b[type]) - new Date('2017/01/01 ' + a[type]);
+    });
+    this.setState({
+      flights: sortedByTimeDescending,
+    });
   }
 
   componentDidUpdate() {
