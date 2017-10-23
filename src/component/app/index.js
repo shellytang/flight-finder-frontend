@@ -16,9 +16,7 @@ class App extends React.Component {
     this.flightSearch = this.flightSearch.bind(this);
     this.handleSort = this.handleSort.bind(this);
     this.sortByPrice = this.sortByPrice.bind(this);
-    // this.sortDescendingPrice = this.sortDescendingPrice.bind(this);
     this.sortByTime = this.sortByTime.bind(this);
-    // this.sortDescendingTime = this.sortDescendingTime.bind(this);
   }
 
   // loads list of airports to populate search bar
@@ -53,14 +51,11 @@ class App extends React.Component {
 
   // ##### FLIGHTS SORT ###########
   handleSort(type, order) {
-    console.log('handleSort type: ', type);
-    console.log('handleSort order: ', order);
-
     switch(type) {
-    // case 'Departs': this.sortByTime(type, order);
-    //   break;
-    // case 'Arrives': this.sortByTime(type, order);
-    //   break;
+    case 'Departs':
+    case 'Arrives':
+      this.sortByTime(type, order);
+      break;
     case 'MainCabinPrice':
     case 'FirstClassPrice':
       this.sortByPrice(type, order);
@@ -78,40 +73,17 @@ class App extends React.Component {
       flights: sortedByPrice,
     });
   }
-  // sortDescendingPrice(type){
-  //   let flightsArr = this.state.flights;
-  //   let sortedByPriceDescending = flightsArr.sort((a,b) => {
-  //     return parseInt(b[type]) - parseInt(a[type]);
-  //   });
-  //   this.setState({
-  //     flights: sortedByPriceDescending,
-  //   });
-  // }
 
   sortByTime(type, order){
     let flightsArr = this.state.flights;
     let sortedByTime = flightsArr.sort((a,b) => {
-      order ? a === a && b === b : a === b && b === a;
-      console.log('what is a: ', a);
-      return new Date('2017/01/01 ' + a[type]) - new Date('2017/01/01 ' + b[type]);
+      return order ? new Date('2017/01/01 ' + a[type]) - new Date('2017/01/01 ' + b[type]) :
+        new Date('2017/01/01 ' + b[type]) - new Date('2017/01/01 ' + a[type]);
     });
-    console.log('sorted ascending time', sortedByTime);
-
     this.setState({
       flights: sortedByTime,
     });
   }
-
-  // sortDescendingTime(type){
-  //   let flightsArr = this.state.flights;
-  //
-  //   let sortedByTimeDescending = flightsArr.sort((a,b) => {
-  //     return new Date('2017/01/01 ' + b[type]) - new Date('2017/01/01 ' + a[type]);
-  //   });
-  //   this.setState({
-  //     flights: sortedByTimeDescending,
-  //   });
-  // }
 
   componentDidUpdate() {
     console.log(':::::STATE::::', this.state);
