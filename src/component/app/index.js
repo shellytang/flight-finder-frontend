@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import SearchBar from '../search-bar';
 import FlightList from '../flight-list';
-// import FlightHeader from '../flight-header';
 import { Alert } from 'react-bootstrap';
+import {Navbar, Nav, NavItem } from 'react-bootstrap';
 
 
 class App extends React.Component {
@@ -92,10 +92,22 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <main>
-        <h1>Welcome. Lets Go Somewhere.</h1>
-
+        <Navbar fluid staticTop>
+          <Navbar.Brand>Alaska Airlines</Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse>
+            <Nav navbar pullRight>
+              <NavItem key={1} href="#/book">Book</NavItem>
+              <NavItem key={2} href="#/explore">Explore</NavItem>
+              <NavItem key={3} href="#/mileage">Mileage Plan</NavItem>
+              <NavItem key={4} href="#/about">About</NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <h3>Welcome. Lets go somewhere.</h3>
         <SearchBar airport={this.state.airport} handleSearch={this.flightSearch}/>
 
         {this.renderIf(this.state.flights,
