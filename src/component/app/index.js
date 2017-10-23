@@ -66,19 +66,17 @@ class App extends React.Component {
     case 'MainCabinPrice':
       order ? this.sortAscendingPrice(type) : this.sortDescendingPrice(type);
       break;
-    case 'FirstClassPrice':
-      order ? this.sortAscendingPrice(type) : this.sortDescendingPrice(type);
+    case 'FirstClassPrice': this.sortAscendingPrice(type, order);
       break;
 
     default: break;
     }
   }
 
-  sortAscendingPrice(type){
+  sortAscendingPrice(type, order){
     let flightsArr = this.state.flights;
-    console.log('ASCENDING', type);
-
     let sortedByPriceAscending = flightsArr.sort((a,b) => {
+      order ? a === a && b === b : a === b && b === a;
       return parseInt(a[type]) - parseInt(b[type]);
     });
     this.setState({
