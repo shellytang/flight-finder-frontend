@@ -1,5 +1,5 @@
 import React from 'react';
-// import FlightHeader from '../flight-header';
+import { Table, Button, Glyphicon } from 'react-bootstrap';
 
 class FlightList extends React.Component {
   constructor(props) {
@@ -42,22 +42,25 @@ class FlightList extends React.Component {
     });
 
     return (
-      <table>
+      <Table striped bordered condensed hover responsive>
         <thead>
           <tr>
             <th>From</th>
             <th>To</th>
             <th>Flight Number</th>
-            <th onClick={this.handleClick} id='Departs'>Departs</th>
-            <th onClick={this.handleClick} id='Arrives'>Arrives</th>
-            <th onClick={this.handleClick} id="MainCabinPrice">Main Cabin Price</th>
-            <th onClick={this.handleClick} id="FirstClassPrice">First Class Price</th>
+            <th>Departs<Button bsSize="xsmall"><Glyphicon glyph="sort" onClick={this.handleClick} id='Departs'/></Button></th>
+
+            <th>Arrives<Button bsSize="xsmall"><Glyphicon glyph="sort" onClick={this.handleClick} id='Arrives'/></Button></th>
+
+            <th>Main Cabin Price<Button bsSize="xsmall"><Glyphicon glyph="sort" onClick={this.handleClick} id="MainCabinPrice"/></Button></th>
+
+            <th>First Class Price<Button bsSize="xsmall"><Glyphicon glyph="sort" onClick={this.handleClick} id="FirstClassPrice"/></Button></th>
           </tr>
         </thead>
         <tbody>
           {flights}
         </tbody>
-      </table>
+      </Table>
     );
   }
 }

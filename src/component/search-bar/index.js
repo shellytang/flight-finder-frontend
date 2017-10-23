@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -39,24 +40,25 @@ class SearchBar extends React.Component {
     });
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label>From</label>
-          <select require='required'name='departureAirport' value={this.state.departureAirport} onChange={this.handleChange}>
+      <Form inline onSubmit={this.handleSubmit}>
+        <FormGroup controlId="formInlineFrom">
+          <ControlLabel>From</ControlLabel>
+          <FormControl componentClass='select' placeholder='Select a departure city' require='required' name='departureAirport' value={this.state.departureAirport} onChange={this.handleChange}>
             <option>Select a departure city</option>
             {names}
-          </select>
-        </div>
+          </FormControl>
+        </FormGroup>
 
-        <div>
-          <label>To</label>
-          <select required='required' name='arrivalAirport' value={this.state.arrivalAirport} onChange={this.handleChange}>
+        <FormGroup controlId="formInlineTo">
+          <ControlLabel>To</ControlLabel>
+          <FormControl componentClass='select' placeholder='Select a destination' required='required' name='arrivalAirport' value={this.state.arrivalAirport} onChange={this.handleChange}>
             <option>Select an destination city</option>
             {names}
-          </select>
-        </div>
-        <button type='submit' value='Submit'>Search</button>
-      </form>
+          </FormControl>
+        </FormGroup>
+
+        <Button bsStyle='primary' type='submit' value='Submit'>Search</Button>
+      </Form>
     );
   }
 

@@ -3,6 +3,8 @@ import axios from 'axios';
 import SearchBar from '../search-bar';
 import FlightList from '../flight-list';
 // import FlightHeader from '../flight-header';
+import { Alert } from 'react-bootstrap';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -92,14 +94,15 @@ class App extends React.Component {
   render() {
     return (
       <main>
-        <h1>This is the App Component</h1>
+        <h1>Welcome. Lets Go Somewhere.</h1>
 
         <SearchBar airport={this.state.airport} handleSearch={this.flightSearch}/>
 
         {this.renderIf(this.state.flights,
           <FlightList flightList={this.state.flights} columnSort={this.handleSort}/>)}
 
-        {this.renderIf(this.state.searchError,                    <p><span>{this.state.searchError}</span></p>)}
+        {this.renderIf(this.state.searchError,
+          <Alert bsStyle="warning">{this.state.searchError}</Alert>)}
 
       </main>
     );
