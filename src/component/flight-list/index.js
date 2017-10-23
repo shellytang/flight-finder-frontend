@@ -10,7 +10,7 @@ class FlightList extends React.Component {
   render() {
 
     let flightList = this.props.flightList || [];
-    console.log('what is flightlist', flightList);
+    console.log('FLIGHTS: ', flightList);
 
     let flights = flightList.map(flight => {
       return (
@@ -28,7 +28,6 @@ class FlightList extends React.Component {
 
     return (
       <table>
-        <FlightHeader />
         <tbody>
           {flights}
         </tbody>

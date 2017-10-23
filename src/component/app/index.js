@@ -14,6 +14,7 @@ class App extends React.Component {
     };
     this.renderIf = this.renderIf.bind(this);
     this.flightSearch = this.flightSearch.bind(this);
+    this.handleSort = this.handleSort.bind(this);
   }
 
   // loads list of airports to populate search bar
@@ -32,19 +33,6 @@ class App extends React.Component {
     axios.get(`${__API_URL__}/api/flights/${departureAirport}/${arrivalAirport}`)
       .then(res => {
         console.log('request success - airports: ', res.data);
-
-        // if(res.data.length === 0) {
-        //   this.setState({
-        //     flights: null,
-        //     searchError: 'Oops! Flight not available.',
-        //   });
-        // } else {
-        //   this.setState({
-        //     flights: res.data,
-        //     searchError: null,
-        //   });
-        // }
-
         this.setState({
           flights: res.data,
           searchError: null,
@@ -59,6 +47,10 @@ class App extends React.Component {
       });
   }
 
+  handleSort(type) {
+    console.log('handleSort: ', type);
+  }
+
   componentDidUpdate() {
     console.log(':::::STATE::::', this.state);
   }
@@ -67,10 +59,14 @@ class App extends React.Component {
     return (
       <main>
         <h1>This is the App Component</h1>
+
         <SearchBar airport={this.state.airport} handleSearch={this.flightSearch}/>
+    
+        {this.renderIf(this.state.flights,
+          <FlightHeader columnSort={this.handleSort}/>)}
 
         {this.renderIf(this.state.flights,
-          <FlightList flightList={this.state.flights} columnSort={this.handleSort}/>)}
+          <FlightList flightList={this.state.flights}/>)}
 
         {this.renderIf(this.state.searchError,                    <p><span>{this.state.searchError}</span></p>)}
 
