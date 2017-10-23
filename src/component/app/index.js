@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import SearchBar from '../search-bar';
 import FlightList from '../flight-list';
-import FlightHeader from '../flight-header';
+// import FlightHeader from '../flight-header';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +15,8 @@ class App extends React.Component {
     this.renderIf = this.renderIf.bind(this);
     this.flightSearch = this.flightSearch.bind(this);
     this.handleSort = this.handleSort.bind(this);
+    this.sortAscendingPrice = this.sortAscendingPrice.bind(this);
+    this.sortDescendingPrice = this.sortDescendingPrice.bind(this);
   }
 
   // loads list of airports to populate search bar
@@ -26,9 +28,9 @@ class App extends React.Component {
       });
   }
 
-  // render flights component if matching results - otherwise, return not found message
+  // ######  AIPORT  ######
+  // render flights component, if matching results - otherwise, return not found message
   renderIf(status, component) { return status ? component : undefined; }
-
   flightSearch(departureAirport, arrivalAirport) {
     axios.get(`${__API_URL__}/api/flights/${departureAirport}/${arrivalAirport}`)
       .then(res => {
@@ -47,9 +49,46 @@ class App extends React.Component {
       });
   }
 
-  handleSort(type) {
-    console.log('handleSort: ', type);
+  // ##### FLIGHTS SORT ###########
+  handleSort(type, order) {
+    console.log('handleSort type: ', type);
+    console.log('handleSort order: ', order);
+
+    switch(type) {
+    case 'MainCabinPrice':
+      order ? this.sortAscendingPrice() : this.sortDescendingPrice();
+      break;
+    case 'FirstClassPrice':
+      order ? this.sortAscendingPrice() : this.sortDescendingPrice();
+      break;
+    default: break;
+    }
   }
+
+  sortAscendingPrice(){
+    let flightsArr = this.state.flights;
+    let type = this.state.type;
+    console.log('ASCENDING', type);
+    let sortedByPriceAscending = flightsArr.sort((a,b) => {
+      return parseInt(a[type]) - parseInt(b[type]);
+    });
+    this.setState({
+      flights: sortedByPriceAscending,
+    });
+
+  }
+
+  sortDescendingPrice(){
+    let flightsArr = this.state.flights;
+    let type = this.state.type;
+    let sortedByPriceDescending = flightsArr.sort((a,b) => {
+      return parseInt(b[type]) - parseInt(a[type]);
+    });
+    this.setState({
+      flights: sortedByPriceDescending,
+    });
+  }
+
 
   componentDidUpdate() {
     console.log(':::::STATE::::', this.state);
@@ -61,12 +100,9 @@ class App extends React.Component {
         <h1>This is the App Component</h1>
 
         <SearchBar airport={this.state.airport} handleSearch={this.flightSearch}/>
-    
-        {this.renderIf(this.state.flights,
-          <FlightHeader columnSort={this.handleSort}/>)}
 
         {this.renderIf(this.state.flights,
-          <FlightList flightList={this.state.flights}/>)}
+          <FlightList flightList={this.state.flights} columnSort={this.handleSort}/>)}
 
         {this.renderIf(this.state.searchError,                    <p><span>{this.state.searchError}</span></p>)}
 
