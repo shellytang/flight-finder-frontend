@@ -1,0 +1,48 @@
+{
+  "name": "flight-finder-frontend",
+  "version": "1.0.0",
+  "description": "flight finder view",
+  "main": "server.js",
+  "scripts": {
+    "lint": "eslint .",
+    "build": "webpack",
+    "start": "node server.js",
+    "postinstall": "webpack -p",
+    "heroku-postbuild": "webpack",
+    "watch": "webpack-dev-server --inline --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shellytang/flight-finder-frontend.git"
+  },
+  "author": "shelly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shellytang/flight-finder-frontend/issues"
+  },
+  "homepage": "https://github.com/shellytang/flight-finder-frontend#readme",
+  "dependencies": {
+    "axios": "^0.17.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.9.0",
+    "eslint-plugin-react": "^7.4.0",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "sass-loader": "^6.0.6",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.3"
+  }
+}
