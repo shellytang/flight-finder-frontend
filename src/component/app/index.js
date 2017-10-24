@@ -1,10 +1,10 @@
+import './_app.scss';
 import React from 'react';
 import axios from 'axios';
 import SearchBar from '../search-bar';
 import FlightList from '../flight-list';
 import { Alert } from 'react-bootstrap';
 import {Navbar, Nav, NavItem } from 'react-bootstrap';
-
 
 class App extends React.Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class App extends React.Component {
       });
   }
 
-  // ##### FLIGHTS SORT ###########
+  // ##### FLIGHTS SORT - ascending and descending ###########
   handleSort(type, order) {
     switch(type) {
     case 'Departs':
@@ -94,29 +94,32 @@ class App extends React.Component {
   render() {
 
     return (
-      <main>
-        <Navbar fluid staticTop>
-          <Navbar.Brand>Alaska Airlines</Navbar.Brand>
+      <div>
+        <Navbar fluid>
+          <Navbar.Brand className='companyName'>BlueSkies Airlines</Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav navbar pullRight>
-              <NavItem key={1} href="#/book">Book</NavItem>
-              <NavItem key={2} href="#/explore">Explore</NavItem>
-              <NavItem key={3} href="#/mileage">Mileage Plan</NavItem>
-              <NavItem key={4} href="#/about">About</NavItem>
+              <NavItem key={1} href="#">Book</NavItem>
+              <NavItem key={2} href="#">Explore</NavItem>
+              <NavItem key={3} href="#">Mileage Plan</NavItem>
+              <NavItem key={4} href="#">About</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <h3>Welcome. Lets go somewhere.</h3>
-        <SearchBar airport={this.state.airport} handleSearch={this.flightSearch}/>
 
-        {this.renderIf(this.state.flights,
-          <FlightList flightList={this.state.flights} columnSort={this.handleSort}/>)}
+        <main>
+          <h3>Welcome! Let's go somewhere.</h3>
+          <SearchBar airport={this.state.airport} handleSearch={this.flightSearch}/>
 
-        {this.renderIf(this.state.searchError,
-          <Alert bsStyle="warning">{this.state.searchError}</Alert>)}
+          {this.renderIf(this.state.flights,
+            <FlightList flightList={this.state.flights} columnSort={this.handleSort}/>)}
 
-      </main>
+          {this.renderIf(this.state.searchError,
+            <Alert bsStyle="warning">{this.state.searchError}</Alert>)}
+        </main>
+
+      </div>
     );
   }
 }

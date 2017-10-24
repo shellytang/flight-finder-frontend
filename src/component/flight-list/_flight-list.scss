@@ -1,0 +1,15 @@
+@import '../../style/_vars';
+
+.flightTable {
+  margin-top: 5%;
+  background: #e3e3e3;
+}
+
+.sortButton {
+  margin-left: 10%;
+  color: $brand-color;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #fff;
+}

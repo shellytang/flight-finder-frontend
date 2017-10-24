@@ -1,8 +1,7 @@
 @import './vendor/_normalize';
-@import 'vars';
-
+@import './vars';
 
 body {
-  background-color: #f4f4f4;
-  font-family: $font;
+  background-color: $background-color;
+  font-family: $font-family;
 }

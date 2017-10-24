@@ -1,3 +1,4 @@
+import './_flight-list.scss';
 import React from 'react';
 import { Table, Button, Glyphicon } from 'react-bootstrap';
 
@@ -42,19 +43,19 @@ class FlightList extends React.Component {
     });
 
     return (
-      <Table striped bordered condensed hover responsive>
+      <Table striped bordered hover responsive className='flightTable'>
         <thead>
           <tr>
             <th>From</th>
             <th>To</th>
             <th>Flight Number</th>
-            <th>Departs<Button bsSize="xsmall"><Glyphicon glyph="sort" onClick={this.handleClick} id='Departs'/></Button></th>
+            <th>Departs<Button bsSize="xsmall" className='sortButton'><Glyphicon glyph="sort" onClick={this.handleClick} id='Departs'/></Button></th>
 
-            <th>Arrives<Button bsSize="xsmall"><Glyphicon glyph="sort" onClick={this.handleClick} id='Arrives'/></Button></th>
+            <th>Arrives<Button bsSize="xsmall" className='sortButton'><Glyphicon glyph="sort" onClick={this.handleClick} id='Arrives'/></Button></th>
 
-            <th>Main Cabin Price<Button bsSize="xsmall"><Glyphicon glyph="sort" onClick={this.handleClick} id="MainCabinPrice"/></Button></th>
+            <th>Main Cabin Price<Button bsSize="xsmall" className='sortButton'><Glyphicon glyph="sort" onClick={this.handleClick} id="MainCabinPrice"/></Button></th>
 
-            <th>First Class Price<Button bsSize="xsmall"><Glyphicon glyph="sort" onClick={this.handleClick} id="FirstClassPrice"/></Button></th>
+            <th>First Class Price<Button bsSize="xsmall" className='sortButton'><Glyphicon glyph="sort" onClick={this.handleClick} id="FirstClassPrice"/></Button></th>
           </tr>
         </thead>
         <tbody>
