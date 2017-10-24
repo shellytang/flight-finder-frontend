@@ -26,12 +26,6 @@ class SearchBar extends React.Component {
     this.props.handleSearch(this.state.departureAirport, this.state.arrivalAirport);
   }
 
-
-  componentDidUpdate() {
-    console.log(':::::STATE: SEARCH BAR::::', this.state);
-  }
-
-
   render() {
     let airports = this.props.airport;
     let names = airports.map(airport => {

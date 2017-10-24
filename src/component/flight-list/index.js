@@ -15,8 +15,6 @@ class FlightList extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    console.log('this was clicked:', e.target.id);
-
     this.setState({
       type: e.target.id, //
       isAscending: !this.state.isAscending, // toggles sort order
@@ -26,8 +24,6 @@ class FlightList extends React.Component {
   render() {
 
     let flightList = this.props.flightList || [];
-    console.log('FLIGHTS: ', flightList);
-
     let flights = flightList.map(flight => {
       return (
         <tr key={flight.FlightNumber}>
