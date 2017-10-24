@@ -11,7 +11,6 @@ let plugins = [
   }),
   new ExtractPlugin('blundle-[hash].css'),
   new DefinePlugin({
-  //   __API_KEY__: JSON.stringify(process.env.API_KEY),
     __API_URL__: JSON.stringify(process.env.API_URL),
   }),
 ];

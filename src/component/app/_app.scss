@@ -1,0 +1,20 @@
+@import '../../style/_vars';
+
+main {
+  min-height: 720px;
+  margin: 5% 5%;
+}
+
+h3 {
+  color: $brand-color;
+}
+.companyName {
+  font-size: 2em;
+}
+
+.navbar-default .navbar-brand {
+  color: $brand-color;
+  &:hover {
+    color: #005b88;
+  }
+}
