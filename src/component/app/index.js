@@ -1,4 +1,3 @@
-import './_app.scss';
 import React from 'react';
 import axios from 'axios';
 import SearchBar from '../search-bar';

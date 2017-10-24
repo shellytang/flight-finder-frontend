@@ -1,5 +1,10 @@
-@import './vendor/_normalize';
+@import './vendor/normalize';
+
 @import './vars';
+
+@import '../component/search-bar/search-bar';
+@import '../component/flight-list/flight-list';
+@import '../component/app/app';
 
 body {
   background-color: $background-color;

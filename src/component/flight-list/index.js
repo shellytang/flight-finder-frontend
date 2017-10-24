@@ -1,4 +1,3 @@
-import './_flight-list.scss';
 import React from 'react';
 import { Table, Button, Glyphicon } from 'react-bootstrap';
 
@@ -24,6 +23,8 @@ class FlightList extends React.Component {
   render() {
 
     let flightList = this.props.flightList || [];
+
+    // render each row with flight details
     let flights = flightList.map(flight => {
       return (
         <tr key={flight.FlightNumber}>

@@ -1,4 +1,3 @@
-import './_search-bar.scss';
 import React from 'react';
 import { Button, Form, ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 
