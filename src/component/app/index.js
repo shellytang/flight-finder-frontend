@@ -36,7 +36,6 @@ class App extends React.Component {
   flightSearch(departureAirport, arrivalAirport) {
     axios.get(`${__API_URL__}/api/flights/${departureAirport}/${arrivalAirport}`)
       .then(res => {
-        console.log('request success - airports: ', res.data);
         this.setState({
           flights: res.data,
           searchError: null,
