@@ -86,12 +86,7 @@ class App extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    console.log(':::::STATE::::', this.state);
-  }
-
   render() {
-
     return (
       <div>
         <Navbar fluid>
