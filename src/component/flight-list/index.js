@@ -15,7 +15,7 @@ class FlightList extends React.Component {
   handleClick(e) {
     e.preventDefault();
     this.setState({
-      type: e.target.id, //
+      type: e.target.id, //column to sort by
       isAscending: !this.state.isAscending, // toggles sort order
     }, () => this.props.columnSort(this.state.type, this.state.isAscending)); // callback to use update state
   }
