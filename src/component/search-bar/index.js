@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
     let value = e.target.value;
     let name = e.target.name;
     this.setState ({
-      [name]: value,
+      [name]: value,  
     });
   }
 

@@ -20,7 +20,8 @@ class App extends React.Component {
     this.sortByTime = this.sortByTime.bind(this);
   }
 
-  // loads list of airports to populate search bar
+  // ######  AIRPORTS  ######
+  // starts AJAX call to load data (list of airports to populate search bar) for component.
   componentDidMount() {
     axios.get(`${__API_URL__}/api/airports`)
       .then(res => {
@@ -28,10 +29,10 @@ class App extends React.Component {
         this.setState({airport});
       });
   }
-
-  // ######  AIPORT  ######
+  // ######  FLIGHTS  ######
   // render flights component, if matching results - otherwise, return not found message
   renderIf(status, component) { return status ? component : undefined; }
+
   flightSearch(departureAirport, arrivalAirport) {
     axios.get(`${__API_URL__}/api/flights/${departureAirport}/${arrivalAirport}`)
       .then(res => {
